@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function TaskForm({ addTask }) {
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Medium");
@@ -14,8 +15,8 @@ function TaskForm({ addTask }) {
       title,
       description,
       priority,
-      status: "To Do",
-      dueDate
+      dueDate,
+      status: "To Do"
     };
 
     addTask(newTask);
@@ -27,23 +28,22 @@ function TaskForm({ addTask }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add Task</h2>
-
+    <form onSubmit={handleSubmit} className="task-form">
       <input
         placeholder="Title"
         value={title}
-        onChange={e => setTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
         required
       />
 
       <input
         placeholder="Description"
         value={description}
-        onChange={e => setDescription(e.target.value)}
+        onChange={(e) => setDescription(e.target.value)}
+        required
       />
 
-      <select value={priority} onChange={e => setPriority(e.target.value)}>
+      <select onChange={(e) => setPriority(e.target.value)} value={priority}>
         <option>High</option>
         <option>Medium</option>
         <option>Low</option>
@@ -51,8 +51,9 @@ function TaskForm({ addTask }) {
 
       <input
         type="date"
+        onChange={(e) => setDueDate(e.target.value)}
         value={dueDate}
-        onChange={e => setDueDate(e.target.value)}
+        required
       />
 
       <button type="submit">Add Task</button>

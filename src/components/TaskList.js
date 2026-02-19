@@ -1,22 +1,22 @@
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks, deleteTask, updateStatus }) {
-  return (
-    <div>
-      <h2>Task List</h2>
+function TaskList({ tasks, deleteTask, updateStatus, editTask }) {
 
-      {tasks.length === 0 ? (
-        <p>No tasks added</p>
-      ) : (
-        tasks.map(task => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            deleteTask={deleteTask}
-            updateStatus={updateStatus}
-          />
-        ))
-      )}
+  if (tasks.length === 0) {
+    return <p>No tasks added</p>;
+  }
+
+  return (
+    <div className="task-list">
+      {tasks.map(task => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          deleteTask={deleteTask}
+          updateStatus={updateStatus}
+          editTask={editTask}
+        />
+      ))}
     </div>
   );
 }
